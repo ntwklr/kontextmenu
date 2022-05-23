@@ -31,7 +31,6 @@ func getContextSliceIndexFromContext(context Context, contextSlice []Context) in
 	return -1
 }
 
-
 func getExecutable() string {
 	executable, err := os.Executable()
 	if err != nil {
@@ -43,12 +42,12 @@ func getExecutable() string {
 }
 
 func getIcon(s string) []byte {
-    b, err := ioutil.ReadFile(s)
-    if err != nil {
-        log.Fatal(err)
-    }
+	b, err := ioutil.ReadFile(s)
+	if err != nil {
+		log.Fatal(err)
+	}
 
-    return b
+	return b
 }
 
 // opens [url] using the `open` command

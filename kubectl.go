@@ -2,7 +2,7 @@ package main
 
 import (
 	"log"
-    "os/exec"
+	"os/exec"
 	"strings"
 )
 
@@ -19,7 +19,7 @@ func getContexts() []Context {
 	for _, item := range lines {
 		log.Printf("Read context \"%s\".", item)
 
-		contexts = append(contexts, Context {
+		contexts = append(contexts, Context{
 			Name: item,
 		})
 	}

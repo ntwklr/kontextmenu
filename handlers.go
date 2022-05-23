@@ -2,7 +2,8 @@ package main
 
 import (
 	"log"
-    "github.com/getlantern/systray"
+
+	"github.com/getlantern/systray"
 )
 
 func (a *App) handleContextSelected(mContexts []*systray.MenuItem, index int) {

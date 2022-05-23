@@ -6,23 +6,23 @@ import (
 	"path"
 
 	"github.com/emersion/go-autostart"
-    "github.com/getlantern/systray"
+	"github.com/getlantern/systray"
 )
 
 const aboutURL = "https://github.com/ntwklr/kontextmenu"
 
 type Context struct {
-	Name 	string
+	Name string
 }
 
 type App struct {
-	autostart 		autostart.App
+	autostart autostart.App
 
-	contexts		[]Context
+	contexts []Context
 
-	currentContext 	Context
+	currentContext Context
 
-	isSystrayReady 	bool
+	isSystrayReady bool
 }
 
 func main() {
@@ -32,14 +32,14 @@ func main() {
 		os.Exit(1)
 	}
 
-	app := App {
-		autostart: 		autostart.App {
-							Name: "kontextmenu",
-							DisplayName: "Kubernetes context switcher",
-							Exec: []string{path.Dir(getExecutable())},
-						},
+	app := App{
+		autostart: autostart.App{
+			Name:        "kontextmenu",
+			DisplayName: "Kubernetes context switcher",
+			Exec:        []string{path.Dir(getExecutable())},
+		},
 
-		contexts: 		getContexts(),
+		contexts: getContexts(),
 
 		currentContext: getCurrentContext(),
 
