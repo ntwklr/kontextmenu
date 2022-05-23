@@ -49,13 +49,3 @@ func (a *App) useContext(context Context) error {
 
 	return nil
 }
-
-func isContextActive(context string) bool {
-	active := getCurrentContext()
-
-	if context == active.Name {
-		return true
-	}
-
-	return false
-}
