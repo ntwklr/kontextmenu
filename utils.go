@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
@@ -39,15 +38,6 @@ func getExecutable() string {
 	}
 
 	return executable
-}
-
-func getIcon(s string) []byte {
-	b, err := ioutil.ReadFile(s)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	return b
 }
 
 // opens [url] using the `open` command

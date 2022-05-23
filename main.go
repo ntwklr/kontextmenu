@@ -1,6 +1,7 @@
 package main
 
 import (
+	"embed"
 	"log"
 	"os"
 	"path"
@@ -9,6 +10,9 @@ import (
 	"github.com/getlantern/systray"
 )
 
+//go:embed assets/*
+var fs embed.FS
+
 const aboutURL = "https://github.com/ntwklr/kontextmenu"
 
 type Context struct {
@@ -16,6 +20,10 @@ type Context struct {
 }
 
 type App struct {
+	icon                 []byte
+	iconTemplate         []byte
+	iconTemplateFallback []byte
+
 	autostart autostart.App
 
 	contexts []Context
@@ -32,7 +40,15 @@ func main() {
 		os.Exit(1)
 	}
 
+	icon, _ := fs.ReadFile("assets/kubernetes-1024.png")
+	iconTemplate, _ := fs.ReadFile("assets/kubernetes-1024_template.png")
+	iconTemplateFallback, _ := fs.ReadFile("assets/kubernetes-1024.ico")
+
 	app := App{
+		icon:                 icon,
+		iconTemplate:         iconTemplate,
+		iconTemplateFallback: iconTemplateFallback,
+
 		autostart: autostart.App{
 			Name:        "kontextmenu",
 			DisplayName: "Kubernetes context switcher",

@@ -5,9 +5,8 @@ import (
 )
 
 func (a *App) onSystrayReady() {
-	systray.SetIcon(getIcon("assets/kubernetes-1024.png"))
-	systray.SetTemplateIcon(getIcon("assets/kubernetes-1024_template.png"), getIcon("assets/kubernetes-1024.ico"))
-	//systray.SetTitle("Awesome App")
+	systray.SetIcon(a.icon)
+	systray.SetTemplateIcon(a.iconTemplate, a.iconTemplateFallback)
 	systray.SetTooltip("Kubernetes context switcher")
 
 	createContextSelectionItems := func(
