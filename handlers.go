@@ -13,18 +13,20 @@ func (a *App) handleContextSelected(mContexts []*systray.MenuItem, index int) {
 	}
 	mContexts[index].Check()
 
-	useContext(a.contexts[index])
+	a.useContext(a.contexts[index])
 }
 
 func (a *App) handleLaunchAtLoginClicked(item *systray.MenuItem) {
 	if a.autostart.IsEnabled() {
 		item.Uncheck()
+		log.Print("Remove kontexmenu from Autostart.")
 
 		if err := a.autostart.Disable(); err != nil {
 			log.Fatal(err)
 		}
 	} else {
 		item.Check()
+		log.Print("Add kontexmenu to Autostart.")
 
 		if err := a.autostart.Enable(); err != nil {
 			log.Fatal(err)

@@ -16,13 +16,12 @@ func checkRequirements() error {
 		return err
 	}
 
-	log.Printf("kubectl is available at %s", path)
+	log.Printf("Found kubectl at %s.", path)
 
 	return nil
 }
 
 func getContextSliceIndexFromContext(context Context, contextSlice []Context) int {
-
 	for index, value := range contextSlice {
 		if value.Name == context.Name {
 			return index

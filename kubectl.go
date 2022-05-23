@@ -17,7 +17,7 @@ func getContexts() []Context {
 	contexts := []Context{}
 
 	for _, item := range lines {
-		log.Printf("read context %s", item)
+		log.Printf("Read context \"%s\".", item)
 
 		contexts = append(contexts, Context {
 			Name: item,
@@ -36,7 +36,7 @@ func getCurrentContext() Context {
 	return Context{Name: strings.TrimSpace(string(output))}
 }
 
-func useContext(context Context) error {
+func (a *App) useContext(context Context) error {
 	output, err := exec.Command("kubectl", "config", "use-context", context.Name).CombinedOutput()
 	if err != nil {
 		log.Fatal(err)
@@ -44,6 +44,8 @@ func useContext(context Context) error {
 	}
 
 	log.Print(strings.TrimSpace(string(output)))
+
+	a.currentContext = getCurrentContext()
 
 	return nil
 }
